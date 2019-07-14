@@ -12,18 +12,18 @@ Once you retreive the HTML, you can then extract the data you need, then use HTM
 ## Dependieces
 These files need to be included in your HTML pages head tag, in the same order. These files are included in the repository so you can store them locally or reference them over the internet
 **Locally**
-    - [joyride-omen.js](joyride-omen-1.0.0.js)
-    - [web-mexican-sun.js](web-mexican-sun-1.0.0.js)
+- [joyride-omen.js](joyride-omen-1.0.0.js)
+- [web-mexican-sun.js](web-mexican-sun-1.0.0.js)
 **Internet**
-    - [joyride-omen.js](http://www.hllywdunddnnpnt.com/js-joyride-omen/joyride-omen-1.0.0.js)
-    - [web-mexican-sun.js](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js)
+- [joyride-omen.js](http://www.hllywdunddnnpnt.com/js-joyride-omen/joyride-omen-1.0.0.js)
+- [web-mexican-sun.js](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js)
 
 ## Files
 The files below are included in this repository, which already contain the code, but you can look to "How to Use" to see how to build these files from scratch
-    - [index.html](index.html) *this is the html page*
-    - [main.js](main.js) *this is the main js file*
-    - [funcs.js](funcs.js) *this is the functions js file*
-    - [style.css](style.css) *this is the styling css file*
+- [index.html](index.html) *this is the html page*
+- [main.js](main.js) *this is the main js file*
+- [funcs.js](funcs.js) *this is the functions js file*
+- [style.css](style.css) *this is the styling css file*
 
 # How to Use
 
@@ -101,9 +101,9 @@ function load_func()
 3. Set the Required *properties*.
 4. Call the Required *methods*.
 
-	*Note: All propteries must be set before calling methods, as the methods need to use the properties
-	Note: The first param in the "webms_build" references the id of the div tag that you added to your html page
-	Note: The "webms_build" method is commented out, as we don't want to call it just yet*
+	*Note: All propteries must be set before calling methods, as the methods need to use the properties*
+	*Note: The first param in the "webms_build" references the id of the div tag that you added to your html page*
+	*Note: The "webms_build" method is commented out, as we don't want to call it just yet*
 
 **FILE: *main.js***
 ```JAVASCRIPT
@@ -145,7 +145,8 @@ function load_func()
 
 ## Step 4 - *funcs.js*
 Create a new js file and open for edit, then follow the steps below. We will call this file your **Funcs** js file, you can call it anything you want, but here we will call it **"funcs.js"**.
-*The 3 functions below can be named anything, but you will need to reference these functions using the names you have given them*
+
+*Note: The 3 functions below can be named anything, but you will need to reference these functions using the names you have given them*
 
 **FILE: *funcs.js***
 ```JAVASCRIPT
@@ -168,7 +169,7 @@ function select_func_WMS (article, page)
 ### Build the **data_func_WMS** function
 - The 1st param "HTML" contains the data returned form the selected URL, converted into HTML Element Object
 - The 2nd param "list" contians the datalist which the extracted data will be saved to
-- The 4rd param "page" contains the selected page number
+- The 3rd param "page" contains the selected page number
 
 1. First you need to select the element that contains the data you want, and create a reference list
 
@@ -223,7 +224,7 @@ function data_func_WMS (HTML, list, page)
 ```
 
 ### Build the **select_func_WMS** function
-	- The 1st param "ref" contains the reference to the single element *In this case a single table row (TR tag)*
+- The 1st param "ref" contains the reference to the single element, in this case a single table row (TR tag)
 
 1. First you need to define a new object and return it, this object will contain the data to be returned
 *Here will call the object "data"*
@@ -248,9 +249,9 @@ function select_func_WMS (ref, page)
 	{
 		var data = {};
 
-		data.name = ""; // get name
-		data.age = ""; // get age
-		data.geneder = ""; // get gender
+		data.name = ref.[?].innerHTML; // get name
+		data.age = ref.[?].innerHTML; // get age
+		data.geneder = ref.[?].innerHTML; // get gender
 
 		return data;
 	}
@@ -272,8 +273,8 @@ If the **datalist** is empty or the data stored is not correct then you will nee
 
 Once you have successfully retreived all the correct data you need to create a function that generates the HTML code
 
-### Build the **build_func_WMS** function
-	- The 1st param "item" contains the *data* object, which contains all the rerturned data 
+### Build the **"build_func_WMS"** function
+*Note: The 1st param "item" contains the *data* object, which contains all the rerturned data*
 
 1. First you need to define a new string and return it, this string will contain the html code to be returned
 *Here will call the object "html"*
