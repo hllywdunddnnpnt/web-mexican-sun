@@ -1,4 +1,4 @@
-#web-mexican-sun
+# web-mexican-sun
 
 **Web Mexican Sun is a javascript library that makes it easier to retreive html file contents via XMLHttpRequest**
 
@@ -8,20 +8,20 @@ What can you do?
 
 Once you retreive the HTML, you can then extract the data you need, then use HTML/CSS/JAVASCRIPT to display the data on your own HTML page
 
-##Dependieces##
+## Dependieces
 These files need to be included in your HTML pages head tag, in the same order. These files are included in the repository so you can use them locally, or using the links below (will require internet connection to run) 
 - [joyride-omen.js](http://www.hllywdunddnnpnt.com/js-joyride-omen/joyride-omen-1.0.0.js) This is a sperate javascript library, which this library requires
-- [web-mexican-sun.s](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js) This is the library js file 
+- [web-mexican-sun.js](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js) This is the library js file 
 
-##Files##
+## Files
 The files below are included in this repository, which already contain the code, but you can look to "How to Use" to see how to build these files from scratch
-- index.html // is your html page
-- main.js // is your js file
+- [index.html](index.html) // is your html page
+- [main.js](main.js) // is your js file
 
-##How to Use##
+## How to Use
 
 **Step 1**
-1. Create a new js file (i.e "main.js") and copy/paste the code below, this is where you will put your js code
+Create a new js file (i.e "main.js") and copy/paste the code below, this is where you will put your js code
 ```JAVASCRIPT
 var data_list = []; // array which will store your data list, data retreived from the selected html pages(s)
 
@@ -61,13 +61,12 @@ function build_article(item) // build_func
 		return html;
 	}
 ```
-
-In the "webms_init" function, update the "url" value. Replace "[PAGE_URL]" with the url of the target HTML page(s)
-In the "webms_init" function, update the "elm_id" value with id name of the HTML element you want to write your HTML code to
+- In the "webms_init" function, update the "url" value. Replace "[PAGE_URL]" with the url of the target HTML page(s)
+- In the "webms_init" function, update the "elm_id" value with id name of the HTML element you want to write your HTML code to
 Edit the "store_data" and "build_article" functions which will be used to retreive the data you require from the specified url and display the results on your HTML page
 
 **Step 2**
-1. Create a new html file (i.e "index.html") and copy/paste the code below, this is where you will put your HTML markup
+Create a new html file (i.e "index.html") and copy/paste the code below, this is where you will put your HTML markup
 
 ```HTML
 <!DOCTYPE html>
@@ -90,8 +89,7 @@ Edit the "store_data" and "build_article" functions which will be used to retrei
 - The div tag that is inside the body tag, replace its id with the id you have chosen (must match the "elm_id" value in your js file)
 
 **Step 3**
-1. Create a new css file (i.e "style.css"), this is where you will put your css code that will style your HTML
-2. Add your css stylesheet to your head tag
+Create a new css file (i.e "style.css"), this is where you will put your css code that will style your HTML, then add your css stylesheet to your head tag
 ```HTML
 <!DOCTYPE html>
 <html>
@@ -100,4 +98,4 @@ Edit the "store_data" and "build_article" functions which will be used to retrei
 	<title>Example</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 ```
-In the link tag, in the href property replace "style.css" with the path to your css stylesheet file
+- In the link tag, in the href property replace "style.css" with the path to your css stylesheet file
