@@ -11,15 +11,19 @@ Once you retreive the HTML, you can then extract the data you need, then use HTM
 
 ## Dependieces
 These files need to be included in your HTML pages head tag, in the same order. These files are included in the repository so you can store them locally or reference them over the internet
-- [joyride-omen.js](http://www.hllywdunddnnpnt.com/js-joyride-omen/joyride-omen-1.0.0.js) This is a sperate javascript library, which this library requires
-- [web-mexican-sun.js](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js) This is the library js file 
+**Locally**
+    - [joyride-omen.js](joyride-omen-1.0.0.js)
+    - [web-mexican-sun.js](web-mexican-sun-1.0.0.js)
+**Internet**
+    - [joyride-omen.js](http://www.hllywdunddnnpnt.com/js-joyride-omen/joyride-omen-1.0.0.js)
+    - [web-mexican-sun.js](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js)
 
 ## Files
 The files below are included in this repository, which already contain the code, but you can look to "How to Use" to see how to build these files from scratch
-- [index.html](index.html) // this is the html page
-- [main.js](main.js) // this is the main js file
-- [funcs.js](funcs.js) // this is the functions js file
-- [funcs.js](funcs.js) // this is the styling css file
+    - [index.html](index.html) *this is the html page*
+    - [main.js](main.js) *this is the main js file*
+    - [funcs.js](funcs.js) *this is the functions js file*
+    - [style.css](style.css) *this is the styling css file*
 
 # How to Use
 
@@ -78,7 +82,7 @@ function load_func()
 	}
 ```
 
-3. At the very top of the page, define a variable, that will reference your **WebMexicanSun** instance, and leave it blank. *Here we will call it **WMS***
+3. At the very top of the page, define a variable, that will reference your **WebMexicanSun** instance, and leave it blank. *Here we will call it **"WMS"***
 4. Within the **load_func** function create a new instance of **WebMexicanSun** and assign it to the **WMS** variable
 
 **FILE: *main.js***
@@ -98,7 +102,8 @@ function load_func()
 4. Call the Required *methods*.
 
 	*Note: All propteries must be set before calling methods, as the methods need to use the properties
-	Note: The first param in the "webms_build" references the id of the div tag that you added to your html page*
+	Note: The first param in the "webms_build" references the id of the div tag that you added to your html page
+	Note: The "webms_build" method is commented out, as we don't want to call it just yet*
 
 **FILE: *main.js***
 ```JAVASCRIPT
@@ -120,7 +125,7 @@ function load_func()
 		// This sets the target URL
 			WMS.url = "[TARGET_URL]"; 
 
-		// This assigns a callback function, called the "data_func"
+		// This assigns the "data_func_WMS" callback function, to the data_func property
 		// The callback "data_func_WMS" function will be used to retreive the data from the selected webpage(s)
 			WMS.data_func = data_func_WMS;
 
@@ -161,9 +166,9 @@ function select_func_WMS (article, page)
 ```
 
 ### Build the **data_func_WMS** function
-	- The 1st param "HTML" contains the data returned form the selected URL, converted into HTML Element Object
-	- The 2nd param "list" contians the datalist which the extracted data will be saved to
-	- The 4rd param "page" contains the selected page number
+- The 1st param "HTML" contains the data returned form the selected URL, converted into HTML Element Object
+- The 2nd param "list" contians the datalist which the extracted data will be saved to
+- The 4rd param "page" contains the selected page number
 
 1. First you need to select the element that contains the data you want, and create a reference list
 
@@ -311,6 +316,8 @@ function build_func_WMS (item, page)
 		return html;
 	}
 ```
+
+4. Uncomment the *webms_build* method call, so that the script can build your webpage using the data from the datalist
 
 ## Step 7 -  Styling your webpage
 
