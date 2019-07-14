@@ -11,9 +11,11 @@ Once you retreive the HTML, you can then extract the data you need, then use HTM
 
 ## Dependieces
 These files need to be included in your HTML pages head tag, in the same order. These files are included in the repository so you can store them locally or reference them over the internet
+
 **Locally**
 - [joyride-omen.js](joyride-omen-1.0.0.js)
 - [web-mexican-sun.js](web-mexican-sun-1.0.0.js)
+
 **Internet**
 - [joyride-omen.js](http://www.hllywdunddnnpnt.com/js-joyride-omen/joyride-omen-1.0.0.js)
 - [web-mexican-sun.js](http://www.hllywdunddnnpnt.com/js-web-mexican-sun/web-mexican-sun-1.0.0.js)
