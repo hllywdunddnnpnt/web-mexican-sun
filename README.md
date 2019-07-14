@@ -1,3 +1,4 @@
+
 # web-mexican-sun
 
 **Web Mexican Sun is a javascript library that makes it easier to retreive html file contents via XMLHttpRequest**
@@ -20,53 +21,16 @@ The files below are included in this repository, which already contain the code,
 
 ## How to Use
 
-**Step 1**
-Create a new js file (i.e "main.js") and copy/paste the code below, this is where you will put your js code
-```JAVASCRIPT
-var data_list = []; // array which will store your data list, data retreived from the selected html pages(s)
+### Step 1
+Create a new html file (i.e "index.html") and open for edit, then follow the steps below.*/(All code under **Step 1:** goes in your html file, that you just created)/*
 
-page.min = 1; // this sets the default value, for the starting page
-page.span = 5; // this sets the default value, for the amount of pages it will grab
-// "page.max" is automatically set, which contains the default value, for the ending page 
+1. Add the basic required HTML tags, like DOCTYPE, HTML, HEAD, BODY
 
-// call the $onload function and place your code in, this means the browser will wait until the page is loaded before running the code
-$onload(function()
-	{
-		webms_init({
-			url: "[PAGE_URL]", // set the value to the target url here, with the page selector at the very end
-			list: data_list, // set the value to your data_list
-			elm_id: "write", // set the value to the id of the element to write the HTML to
-			data_func: store_data, // set the value to the function that will store data into the data list
-			build_func: build_article, // set the value to the function that will generate the HTML to display the all articles
-		});
-	});
+2. Include the required js files to your HTML page using a script tags
 
-// function that passes through the selected article and returns an object with all the data
-function retreive_data(article, sel_page) 
-	{
-		var obj = {};
-		return obj;
-	}
+3. Include your **Main** js file to your HTML page using a script tag. */replace main.js with the path of your **Main** js file which we havent created yet/*
 
-// function that cycles through all articles and adds the data to the data list
-function store_data(HTML, list, sel_page) // data_func
-	{
-		// retreive_data();
-	}
-
-// function that passes the selected data object, and uses the data to build & display the new article
-function build_article(item) // build_func
-	{
-		var html = '';
-		return html;
-	}
-```
-- In the "webms_init" function, update the "url" value. Replace "[PAGE_URL]" with the url of the target HTML page(s)
-- In the "webms_init" function, update the "elm_id" value with id name of the HTML element you want to write your HTML code to
-Edit the "store_data" and "build_article" functions which will be used to retreive the data you require from the specified url and display the results on your HTML page
-
-**Step 2**
-Create a new html file (i.e "index.html") and copy/paste the code below, this is where you will put your HTML markup
+4. Add an empty DIV tag to body and give it an id */replace "write" with the id you chose/*
 
 ```HTML
 <!DOCTYPE html>
@@ -85,17 +49,299 @@ Create a new html file (i.e "index.html") and copy/paste the code below, this is
 </html>
 ```
 
-- In the last script tag, in the src property replace "main.js" with the path to your js file
-- The div tag that is inside the body tag, replace its id with the id you have chosen (must match the "elm_id" value in your js file)
+### Step 2
+Create a new js file and open for edit, then follow the steps below. We will call this file your **Main** js file, you can call it anything you want, but here we will call it **"main.js"**.
 
-**Step 3**
-Create a new css file (i.e "style.css"), this is where you will put your css code that will style your HTML, then add your css stylesheet to your head tag
-```HTML
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Example</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+*/All code under **Step 2:** goes in your **Main** js file)/*
+
+1. Call the **$onload** function, and place your code within a callback function that you pass through the 1st parameter. You can also define a function globally then pass its name through the 1st parameter, this is so that your code only runs once the page has fully loaded
+
+2. Create a new instance of WebMexicanSun and assign it to a variable, to use globally you will need to define the variable globally (and leave it empty)
+
+3. Set the Required */properties/*.
+
+4. Call the Required */methods/*.
+
+*/Note: All propteries must be set before calling methods, as the methods need to use the properties/*
+*/Note: The first param in the "webms_build" references the id of the div tag that you added to your html page /*
+
+```JAVASCRIPT
+var WMS;
+$onload(function()
+	{
+		// Creates a new instance of WebMexicanSun and assigns to the "WMS" variable so you can reference it
+			WMS = new WebMexicanSun();
+
+		// This sets the default starting page
+			WMS.pageMin = 1;
+
+		// This sets the default amoutn of pages to be selected
+			WMS.pageSpan = 5;
+
+		// This sets the target URL
+			WMS.url = "[TARGET_URL]"; 
+
+		// This assigns a callback function, called the "data_func"
+		// The "data_func" function  will be used to retreive the data from the selected webpage(s)
+			WMS.data_func = function (HTML, list, page)
+				{
+					// leave blank for now
+				};
+
+		// This function retreives all the data from the selected webpage(s)
+			WMS.webms_init();
+
+		// This function writes the generated HTML code to the webpage(s)
+		// A callback function called "build_func" needs to be passed through the 2nd param
+			WMS.webms_build("write",function (item)
+				{
+					// leave blank for now
+				});
+	});
 ```
-- In the link tag, in the href property replace "style.css" with the path to your css stylesheet file
+
+### Step 3
+Create a new js file and open for edit, then follow the steps below. We will call this file your **Funcs** js file, you can call it anything you want, but here we will call it **"funcs.js"**.
+
+1. Copy & Paste the code below into this file
+
+```JAVASCRIPT
+function data_func_WMS (HTML, list, page)
+	{
+		// leave blank for now
+	}
+
+function build_func_WMS (item)
+	{
+		// leave blank for now
+	}
+
+function select_func_WMS (article, page)
+	{
+		// leave blank for now
+	}
+```
+
+3. Include your **"Funcs"** js file to your HTML page using a script tag, above the last script tag. Replace "funcs.js" with the correct path.
+
+4. If you named your **"Main"** js file a different name, or created it in a different directory, then update the src path. Replace "main.js" with the correct path.
+
+```HTML
+	<script type="text/javascript" src="funcs.js"></script>
+
+	<script type="text/javascript" src="main.js"></script>
+</head>
+```
+
+5. Open up your **Main** js file, and ready for edit.
+
+You need to make some edits
+
+```JAVASCRIPT
+// Replace
+
+	WMS.data_func = function (HTML, list, page)
+		{
+			// leave blank for now
+		};
+
+// With
+
+	WMS.data_func = data_func_WMS;
+```
+
+and
+
+```JAVASCRIPT
+// Replace
+
+	WMS.webms_build("write",function (item)
+		{
+			// leave blank for now
+		});
+
+// With
+
+	WMS.webms_build("write", build_func_WMS);
+```
+
+Comment out the **WMS.webms_build** method that you have called
+Below the **WMS.webms_build** method that you have called, print the WebMexicanSun instance to the console
+
+```JAVASCRIPT
+	// This function retreives all the data from the selected webpage(s)
+		WMS.webms_init();
+
+	$log(WMS);
+
+	// This function writes the generated HTML code to the webpage(s)
+	// A callback function called "build_func" needs to be passed through the 2nd param
+	//	WMS.webms_build("write", build_func_WMS);
+```
+
+Here is what your **Main** js file should look like now
+
+```JAVASCRIPT
+var WMS;
+$onload(function()
+	{
+		// Creates a new instance of WebMexicanSun and assigns to the "WMS" variable so you can reference it
+			WMS = new WebMexicanSun();
+
+		// This sets the default starting page
+			WMS.pageMin = 1;
+
+		// This sets the default amoutn of pages to be selected
+			WMS.pageSpan = 5;
+
+		// This sets the target URL
+			WMS.url = "[TARGET_URL]"; 
+
+		// This assigns a callback function, called the "data_func"
+		// The "data_func" function  will be used to retreive the data from the selected webpage(s)
+			WMS.data_func = data_func_WMS;
+
+		// This function retreives all the data from the selected webpage(s)
+			WMS.webms_init();
+
+		$log(WMS);
+
+		// This function writes the generated HTML code to the webpage(s)
+		// A callback function called "build_func" needs to be passed through the 2nd param
+		//	WMS.webms_build("write", build_func_WMS);
+	});
+```
+
+### Step 4:
+Open your **Func** js file and ready for edit.
+
+1. Build the **data_func_WMS** function
+	- The 1st param "HTML" contains the data returned form the selected URL, converted into HTML Element Object
+	- The 2nd param "list" contians the datalist which the extracted data will be saved to
+	- The 4rd param "page" contains the selected page number
+
+1a. First you need to select the element that contains the data you want, and create a reference list
+
+```
+For example if you want to extract data that is displayed in a table, then you need to be able to reference the tables rows (TR tags). Then you need to store all these table row references into a list.
+```
+
+```JAVASCRIPT
+function data_func_WMS (HTML, list, page)
+	{
+		var table = $id("table"); // reference the table by id
+		var list_tr = table.rows; // stores a reference to all the tables rows (TR tags)
+	}
+```
+
+1b. Once you have your reference list, you need to iterate through the table rows, so that you can extract data from within the rows
+
+```JAVASCRIPT
+	ref_list.$cycle(function(item)
+		{
+
+		});
+```
+
+1c. When you iterate through the list results you need to add the returned data to the datalist, the **select_func_WMS** function will return the data, so you need to call it and pass the */"item"/* and */"page"/* variables
+
+```JAVASCRIPT
+	datalist.push( 
+		select_func_WMS (item, page) 
+	);
+```
+
+1d. Your **data_func_WMS** function should look like this
+
+```JAVASCRIPT
+function data_func_WMS (HTML, list, page)
+	{
+		var table = $id("table"); // reference the table by id
+		var list_tr = table.rows; // stores a reference to all the tables rows (TR tags)
+
+		ref_list.$cycle(function(ref)
+			{
+				datalist.push( 
+					select_func_WMS (ref, page) 
+				);
+			});
+	}
+```
+
+2. Build the **select_func_WMS** function
+	- The 1st param "ref" contains the reference to the single element */In this case a single table row (TR tag)/*
+
+2a. First you need to define a new object and return it, this object will contain the data to be returned
+*/Here will call the object "data"/*
+
+```JAVASCRIPT
+function select_func_WMS (ref, page)
+	{
+		var data = {};
+
+		// leave this blank
+
+		return data;
+	}
+```
+
+2b. Using the */ref/* param, extract data and store it in the */data/* object
+
+```JAVASCRIPT
+function select_func_WMS (ref, page)
+	{
+		var data = {};
+
+		data.name = ""; // get name
+		data.age = ""; // get age
+		data.geneder = ""; // get gender
+
+		return data;
+	}
+```
+
+3. Build the **build_func_WMS** function
+	- The 1st param "item" contains the */data/* object, which contains all the rerturned data 
+
+3a. First you need to define a new string and return it, this string will contain the html code to be returned
+*/Here will call the object "html"/*
+
+```JAVASCRIPT
+function build_func_WMS (item, page)
+	{
+		var html = '';
+
+		// leave this blank
+
+		return html;
+	}
+```
+
+3a. First you need to define a new string and return it, this string will contain the html code to be returned
+*/Here will call the object "html"/*
+
+3b. Using the */item/* param, place data within formatted HTML, as shown below
+
+```JAVASCRIPT
+function build_func_WMS (item, page)
+	{
+		var html = '';
+
+		html += '<div>
+			<div>
+				Name: ' + ref.name + '
+			</div>
+			<div>
+				Age: ' + ref.age + '
+			</div>
+			<div>
+				Gender: ' + ref.gender + '
+			</div>
+		</div>';
+
+		return html;
+	}
+```
+
+### You have Finished
+
