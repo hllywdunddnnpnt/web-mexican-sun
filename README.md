@@ -80,11 +80,12 @@ $onload(load_func);
 
 function load_func()
 	{
-		// leave this blank
+		// leave blank for now
 	}
 ```
 
 3. At the very top of the page, define a variable, that will reference your **WebMexicanSun** instance, and leave it blank. *Here we will call it **"WMS"***
+
 4. Within the **load_func** function create a new instance of **WebMexicanSun** and assign it to the **WMS** variable
 
 **FILE: *main.js***
@@ -152,16 +153,19 @@ Create a new js file and open for edit, then follow the steps below. We will cal
 
 **FILE: *funcs.js***
 ```JAVASCRIPT
+// callback function that will be used to extract and store data
 function data_func_WMS (HTML, list, page)
 	{
 		// leave blank for now
 	}
 
+// callback function that will be used to generate the html code, to build the webpage
 function build_func_WMS (item)
 	{
 		// leave blank for now
 	}
 
+// callback function that will be used to retreive data, this function is to be called in the "data_func_WMS" callback function
 function select_func_WMS (article, page)
 	{
 		// leave blank for now
@@ -237,7 +241,7 @@ function select_func_WMS (ref, page)
 	{
 		var data = {};
 
-		// leave this blank
+		// leave blank for now
 
 		return data;
 	}
@@ -287,7 +291,7 @@ function build_func_WMS (item, page)
 	{
 		var html = '';
 
-		// leave this blank
+		// leave blank for now
 
 		return html;
 	}

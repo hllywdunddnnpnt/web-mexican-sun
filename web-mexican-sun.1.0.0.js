@@ -1,81 +1,80 @@
 
-var list = [];
-var obj_query = {};
-var page = 
+function webMexicanSun()
 	{
-		min: 1, // sets the default, first page to select
-		span: 1, // sets the default, amount of pages to select
-	};
-// page.max = contains the last selected page, set automatically
-
-function webms_init(obj)
-	{
-		webms_query_data(page);
-		obj.page = page;
-		webms_cycle_page_data(obj);
-		webms_build_display(obj);
-	}
-
-function webms_cycle_page_data(obj)
-	{
-		var min = obj.page.min ? obj.page.min : 1;
-		var span = obj.page.span ? obj.page.span : 1;
-		span.$loop(min,1,function(page)
+		this.pageMin = 1;
+		this.pageSpan = 3;
+		this.datalist = [];
+		this.html = '';
+		this.url = "";
+		this.data_func = function(){return null;};
+		this.webms_init = function()
 			{
-				webms_get_page_data(obj, page); // retrieves the data for the selecte page
-			});
+				webms_query_data(this);
+				this.pageMax = this.pageMin + this.pageSpan - 1;
+				var ref = this;
+				this.pageSpan.$loop(this.pageMin,1,function(page)
+					{
+						webms_get_page_data(ref, page);
+					});
+			};
+		this.webms_build = function(elm_id, callback)
+			{
+				var ref = this;
+				if (!$isfunc(callback)) $error("The specified callback function, is not a valid function");
+				else if (!$iselm($id(elm_id))) $error("The specified element id, is invalid");
+				else
+					{
+						if (this.datalist.length > 0)
+							{
+								this.datalist.$cycle(function(item)
+									{
+										ref.html += callback(item); // builds the manga articles, and adds the html to the "html" variable
+									}); 
+								$id(elm_id).innerHTML = this.html;
+							}
+						else
+							{
+								$warn("The datalist is empty, no data was returned");
+							}
+					}
+			};
 	}
 
 // pass the page number and retreive an array (of objects) of all the details of the mangas that are displayed on that page
-function webms_get_page_data(obj, setpage)
+function webms_get_page_data(ref, page)
 	{
-		var url = obj.url ? obj.url : "";
-		var page = $isnum(obj.page) ? obj.page : ($isnum(setpage) ? setpage : 1);
-		var list = obj.list ? obj.list : [];
-		var data_func = obj.data_func ? obj.data_func : function(){return null;};
+		var url = ref.url + page;
 	// retrieves the contents from the html file of the given link
-		$ajax_post(url+page,{},function(result)
+		$ajax_post(url,{},function(result)
 			{
 			// take the html files text and convert it into a html object
 				var resultHTML = result.$toHTML();
 			// cycle through the articles and add its title to an array
-				data_func(resultHTML,list,page);
+				ref.webms_slip(resultHTML, ref.datalist, page);
 			},false);
 	}
 
-function webms_build_display(obj)
+function webms_get_nav_link_data(ref)
 	{
-		var list = obj.list ? obj.list : [];
-		var build_func = obj.build_func ? obj.build_func : function(){return null;};
-		var html = "";
-		list.$cycle(function(item)
-			{
-				html += build_func(item); // builds the manga articles, and adds the html to the "html" variable
-			}); 
-		if ($iselm($id(obj.elm_id))) $id(obj.elm_id).innerHTML = html;
-	}
-
-function webms_navdata()
-	{
-		var next = webms_navdata2(true);
-		var prev = webms_navdata2(false);
+		var next = webms_get_nav_link_data2(ref, true);
+		var prev = webms_get_nav_link_data2(ref, false);
 		return {
 			next,
 			prev,
 		};
 	}
 
-function webms_navdata2(forward)
+function webms_get_nav_link_data2(ref, forward)
 	{
 		if (!$isboo(forward)) forward = true;
 		var new_query = obj_query.$copy();
-		if (!new_query.page) new_query.page = page.min;
-		var span_next = new_query.span ? new_query.span : page.span;
-		new_query.page = (forward ? new_query.page + page.span : new_query.page - page.span);
-		var max = new_query.page + page.span - 1;
+		if (!new_query.page) new_query.page = ref.pageMin;
+		var span_next = new_query.span ? new_query.span : ref.pageSpan;
+		new_query.page = (forward ? new_query.page + ref.pageSpan : new_query.page - ref.pageSpan);
+		var max = new_query.page + ref.pageSpan - 1;
 		var url = $query_string_update(location.href,new_query);
 		var obj = {};
-		if (new_query.page > 0)${1:}
+		if (new_query.page > 0)
 			{
 				obj.url = url;
 				obj.start = new_query.page;
@@ -84,15 +83,14 @@ function webms_navdata2(forward)
 		return obj;
 	}
 
-function webms_query_data(page)
+function webms_query_data(ref, page)
 	{
 		obj_query = $query_string(location.href);
-		if (obj_query.page) page.min = obj_query.page; // overrides the select page, if it is specified in the url
-		if (obj_query.span) page.span = obj_query.span; // overrides the amount of pages to select, if it is specified in the url
-		page.max = page.min + page.span - 1;
+		if ($ispos(obj_query.page)) ref.pageMin = obj_query.page; // overrides the select page, if it is specified in the url
+		if ($ispos(obj_query.span)) ref.pageSpan = obj_query.span; // overrides the amount of pages to select, if it is specified in the url
 	}
 
-function $page_top_event(elm, event_type)
+function $scrollTop_Event(elm, event_type)
 	{
 		elm.addEventListener(event_type,function(e)
 			{
