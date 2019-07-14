@@ -3703,6 +3703,16 @@ function joyride_hrefs()
 			});
 	}
 
+function $scrollTop_Event(elm, event_type)
+	{
+		elm.addEventListener(event_type,function(e)
+			{
+				document.body.scrollTop = 0; // For Safari
+  				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+			});
+	}
+
+
 /*
 
 

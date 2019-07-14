@@ -1,3 +1,4 @@
+
 var WMS;
 
 $onload(load_func);
@@ -31,4 +32,4 @@ function load_func()
 		/*
 			WMS.webms_build("write", build_func_WMS);
 		*/
-	});
+	};

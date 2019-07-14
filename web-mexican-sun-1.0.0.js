@@ -1,5 +1,5 @@
 
-function webMexicanSun()
+function WebMexicanSun()
 	{
 		this.pageMin = 1;
 		this.pageSpan = 3;
@@ -16,6 +16,7 @@ function webMexicanSun()
 					{
 						webms_get_page_data(ref, page);
 					});
+				this.info = webms_get_nav_link_data(this);
 			};
 		this.webms_build = function(elm_id, callback)
 			{
@@ -30,7 +31,7 @@ function webMexicanSun()
 									{
 										ref.html += callback(item); // builds the manga articles, and adds the html to the "html" variable
 									}); 
-								$id(elm_id).innerHTML = this.html;
+								$id(elm_id).innerHTML = ref.html;
 							}
 						else
 							{
@@ -50,7 +51,7 @@ function webms_get_page_data(ref, page)
 			// take the html files text and convert it into a html object
 				var resultHTML = result.$toHTML();
 			// cycle through the articles and add its title to an array
-				ref.webms_slip(resultHTML, ref.datalist, page);
+				ref.data_func(resultHTML, ref.datalist, page);
 			},false);
 	}
 
@@ -89,13 +90,3 @@ function webms_query_data(ref, page)
 		if ($ispos(obj_query.page)) ref.pageMin = obj_query.page; // overrides the select page, if it is specified in the url
 		if ($ispos(obj_query.span)) ref.pageSpan = obj_query.span; // overrides the amount of pages to select, if it is specified in the url
 	}
-
-function $scrollTop_Event(elm, event_type)
-	{
-		elm.addEventListener(event_type,function(e)
-			{
-				document.body.scrollTop = 0; // For Safari
-  				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-			});
-	}
-
