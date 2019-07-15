@@ -6,15 +6,14 @@ function WebMexicanSun()
 		this.datalist = [];
 		this.html = '';
 		this.url = "";
-		this.data_func = function(){return null;};
-		this.webms_init = function()
+		this.webms_init = function(data_func)
 			{
 				webms_query_data(this);
 				this.pageMax = this.pageMin + this.pageSpan - 1;
 				var ref = this;
 				this.pageSpan.$loop(this.pageMin,1,function(page)
 					{
-						webms_get_page_data(ref, page);
+						webms_get_page_data(ref, data_func, page);
 					});
 				this.info = webms_get_nav_link_data(this);
 			};
@@ -42,7 +41,7 @@ function WebMexicanSun()
 	}
 
 // pass the page number and retreive an array (of objects) of all the details of the mangas that are displayed on that page
-function webms_get_page_data(ref, page)
+function webms_get_page_data(ref, data_func, page)
 	{
 		var url = ref.url + page;
 	// retrieves the contents from the html file of the given link
@@ -51,7 +50,7 @@ function webms_get_page_data(ref, page)
 			// take the html files text and convert it into a html object
 				var resultHTML = result.$toHTML();
 			// cycle through the articles and add its title to an array
-				ref.data_func(resultHTML, ref.datalist, page);
+				data_func(resultHTML, ref.datalist, page);
 			},false);
 	}
 

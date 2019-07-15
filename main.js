@@ -17,18 +17,15 @@ function load_func()
 		// This sets the target URL
 			WMS.url = "[TARGET_URL]"; 
 
-		// This assigns the "data_func_WMS" callback function, to the data_func property
-		// The callback "data_func_WMS" function will be used to retreive the data from the selected webpage(s)
-			WMS.data_func = data_func_WMS;
-
 		// This function retreives all the data from the selected webpage(s)
-			WMS.webms_init();
+		// A callback function called "data_func_WMS" is passed through the 2nd param, which this function uses the data_func_WMS function to execute the code
+			WMS.webms_init(data_func_WMS);
 
 		// Prints the instance of WebMexicanSun to the console, for testing
 			$log(WMS);
 
 		// This function writes the generated HTML code to the webpage(s)
-		// A callback function called "build_func_WMS" is passed through the 2nd param
+		// A callback function called "build_func_WMS" is passed through the 2nd param, which this function uses the build_func_WMS function to execute the code
 		/*
 			WMS.webms_build("write", build_func_WMS);
 		*/
